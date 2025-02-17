@@ -5,7 +5,7 @@ import { useParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import api from "@/utils/api"
-import { toast } from "@/components/ui/use-toast"
+import { toast, useToast } from "@/hooks/use-toast"
 
 interface Report {
   id: number
@@ -20,6 +20,7 @@ interface Report {
 }
 
 export default function ReportDetailsPage() {
+  const { toast } = useToast()
   const { id } = useParams()
   const [report, setReport] = useState<Report | null>(null)
 

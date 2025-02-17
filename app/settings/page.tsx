@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import api from "@/utils/api"
-import { toast } from "@/components/ui/use-toast"
+import { toast, useToast } from "@/hooks/use-toast"
 
 interface Admin {
   id: number
@@ -18,6 +18,7 @@ interface Admin {
 }
 
 export default function SettingsPage() {
+  const { toast } = useToast()
   const [admins, setAdmins] = useState<Admin[]>([])
   const [newAdmin, setNewAdmin] = useState({
     first_name: "",

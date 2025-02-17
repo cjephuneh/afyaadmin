@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Stethoscope, Users, Calendar, MessageSquare } from "lucide-react"
-import { ProtectedRoute } from "@/components/ProtectedRoute"
+// import { ProtectedRoute } from "@/components/ProtectedRoute"
 import api from "@/utils/api"
 
 interface OverviewData {
@@ -13,7 +13,7 @@ interface OverviewData {
   totalFeedbacks: number
 }
 
-export default function Home() {
+function Home() {
   const [overviewData, setOverviewData] = useState<OverviewData>({
     totalDoctors: 0,
     totalPatients: 0,
@@ -45,7 +45,7 @@ export default function Home() {
   }
 
   return (
-    <ProtectedRoute>
+    // <ProtectedRoute>
       <div className="space-y-6">
         <h1 className="text-3xl font-bold">Telemedicine Admin Dashboard</h1>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -87,7 +87,9 @@ export default function Home() {
           </Card>
         </div>
       </div>
-    </ProtectedRoute>
+    // </ProtectedRoute>
   )
 }
 
+
+export default Home

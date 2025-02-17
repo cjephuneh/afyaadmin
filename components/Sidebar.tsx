@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { LayoutDashboard, Stethoscope, Users, Calendar, FileText, Settings, MessageSquare, LogOut } from "lucide-react"
-import { useAuth } from "@/context/AuthContext"
+// import { useAuth } from "@/context/AuthContext"
 
 const sidebarItems = [
   { icon: LayoutDashboard, label: "Dashboard", href: "/" },
@@ -19,7 +19,7 @@ const sidebarItems = [
 
 export function Sidebar() {
   const pathname = usePathname()
-  const { logout } = useAuth()
+  // const { logout } = useAuth()
 
   return (
     <div className="w-64 border-r bg-white dark:bg-gray-800">
@@ -52,7 +52,7 @@ export function Sidebar() {
           </div>
         </ScrollArea>
         <div className="border-t p-4">
-          <Button variant="ghost" className="w-full justify-start" onClick={logout}>
+          <Button variant="ghost" className="w-full justify-start" >
             <LogOut className="mr-2 h-4 w-4" />
             Logout
           </Button>

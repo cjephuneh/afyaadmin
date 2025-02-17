@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { ViewReportModal } from "@/components/ViewReportModal"
 import api from "@/utils/api"
-import { toast } from "@/components/ui/use-toast"
+import { toast, useToast } from "@/hooks/use-toast"
 
 interface Report {
   id: number
@@ -16,9 +16,11 @@ interface Report {
   prescription: string
   recommendations: string | null
   created_at: string
+  image_url: string | null
 }
 
 export default function ReportsPage() {
+  const { toast } = useToast()
   const [reports, setReports] = useState<Report[]>([])
   const [viewReport, setViewReport] = useState<Report | null>(null)
 
