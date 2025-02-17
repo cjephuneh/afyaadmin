@@ -1,114 +1,99 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { PlusCircle } from "lucide-react"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { AddAppointmentForm } from "@/components/AddAppointmentForm"
-import { ViewAppointmentModal } from "@/components/ViewAppointmentModal"
-import { EditAppointmentModal } from "@/components/EditAppointmentModal"
-import api from "@/utils/api"
-import { useToast } from "@/hooks/use-toast"
-
-interface Appointment {
-  id: number
-  appointment_method: string
-  date: string
-  time: string
-  status: string
-  patient_id: number
-  doctor_id: number
-  details?: string
-  purpose?: string
-  meet_link?: string
-  room_id?: string
-}
-
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { PlusCircle } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { AddAppointmentForm } from "@/components/AddAppointmentForm";
+import { ViewAppointmentModal } from "@/components/ViewAppointmentModal";
+import { EditAppointmentModal } from "@/components/EditAppointmentModal";
+import api from "@/utils/api";
+import { useToast } from "@/hooks/use-toast";
 
 export default function AppointmentsPage() {
-    const {toast} = useToast()
+  const { toast } = useToast();
 
-  const [appointments, setAppointments] = useState<Appointment[]>([])
-  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
-  const [viewAppointment, setViewAppointment] = useState<Appointment | null>(null)
-  const [editAppointment, setEditAppointment] = useState<Appointment | null>(null)
+  const [appointments, setAppointments] = useState([]);
+  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+  const [viewAppointment, setViewAppointment] = useState(null);
+  const [editAppointment, setEditAppointment] = useState(null);
 
   useEffect(() => {
-    fetchAppointments()
-  }, [])
+    fetchAppointments();
+  }, []);
 
   const fetchAppointments = async () => {
     try {
-      const response = await api.get("/appointments")
-      setAppointments(response.data)
+      const response = await api.get("/appointments");
+      setAppointments(response.data);
     } catch (error) {
-      console.error("Error fetching appointments:", error)
+      console.error("Error fetching appointments:", error);
       toast({
         title: "Error",
         description: "Failed to fetch appointments",
         variant: "destructive",
-      })
+      });
     }
-  }
+  };
 
-  const handleAddAppointment = async (newAppointment: Omit<Appointment, "id">) => {
+  const handleAddAppointment = async (newAppointment) => {
     try {
-      await api.post("/appointments", newAppointment)
+      await api.post("/appointments", newAppointment);
       toast({
         title: "Success",
         description: "Appointment added successfully",
-      })
-      fetchAppointments()
-      setIsAddDialogOpen(false)
+      });
+      fetchAppointments();
+      setIsAddDialogOpen(false);
     } catch (error) {
-      console.error("Error adding appointment:", error)
+      console.error("Error adding appointment:", error);
       toast({
         title: "Error",
         description: "Failed to add appointment",
         variant: "destructive",
-      })
+      });
     }
-  }
+  };
 
-  const handleUpdateAppointment = async (updatedAppointment: Appointment) => {
+  const handleUpdateAppointment = async (updatedAppointment) => {
     try {
-      await api.put(`/appointments/${updatedAppointment.id}`, updatedAppointment)
+      await api.put(`/appointments/${updatedAppointment.id}`, updatedAppointment);
       toast({
         title: "Success",
         description: "Appointment updated successfully",
-      })
-      fetchAppointments()
-      setEditAppointment(null)
+      });
+      fetchAppointments();
+      setEditAppointment(null);
     } catch (error) {
-      console.error("Error updating appointment:", error)
+      console.error("Error updating appointment:", error);
       toast({
         title: "Error",
         description: "Failed to update appointment",
         variant: "destructive",
-      })
+      });
     }
-  }
+  };
 
-  const handleDeleteAppointment = async (id: number) => {
+  const handleDeleteAppointment = async (id) => {
     if (window.confirm("Are you sure you want to delete this appointment?")) {
       try {
-        await api.delete(`/appointments/${id}`)
+        await api.delete(`/appointments/${id}`);
         toast({
           title: "Success",
           description: "Appointment deleted successfully",
-        })
-        fetchAppointments()
+        });
+        fetchAppointments();
       } catch (error) {
-        console.error("Error deleting appointment:", error)
+        console.error("Error deleting appointment:", error);
         toast({
           title: "Error",
           description: "Failed to delete appointment",
           variant: "destructive",
-        })
+        });
       }
     }
-  }
+  };
 
   return (
     <div className="space-y-6">
@@ -148,13 +133,27 @@ export default function AppointmentsPage() {
               <TableCell>{appointment.doctor_id}</TableCell>
               <TableCell>{appointment.status}</TableCell>
               <TableCell>
-                <Button variant="outline" size="sm" className="mr-2" onClick={() => setViewAppointment(appointment)}>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="mr-2"
+                  onClick={() => setViewAppointment(appointment)}
+                >
                   View
                 </Button>
-                <Button variant="outline" size="sm" className="mr-2" onClick={() => setEditAppointment(appointment)}>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="mr-2"
+                  onClick={() => setEditAppointment(appointment)}
+                >
                   Edit
                 </Button>
-                <Button variant="outline" size="sm" onClick={() => handleDeleteAppointment(appointment.id)}>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleDeleteAppointment(appointment.id)}
+                >
                   Delete
                 </Button>
               </TableCell>
@@ -178,6 +177,5 @@ export default function AppointmentsPage() {
         />
       )}
     </div>
-  )
-}
-
+  );
+} 

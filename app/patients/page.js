@@ -11,24 +11,13 @@ import { EditPatientModal } from "@/components/EditPatientModal"
 import api from "@/utils/api"
 import { useToast } from "@/hooks/use-toast"
 
-interface Patient {
-  id: number
-  first_name: string
-  last_name: string
-  email: string
-  phone_number: string
-  gender: string
-  national_id: string
-  date_of_birth: string | null
-}
-
 export default function PatientsPage() {
-    const {toast} = useToast()
+  const { toast } = useToast()
 
-  const [patients, setPatients] = useState<Patient[]>([])
+  const [patients, setPatients] = useState([])
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
-  const [viewPatient, setViewPatient] = useState<Patient | null>(null)
-  const [editPatient, setEditPatient] = useState<Patient | null>(null)
+  const [viewPatient, setViewPatient] = useState(null)
+  const [editPatient, setEditPatient] = useState(null)
 
   useEffect(() => {
     fetchPatients()
@@ -48,7 +37,7 @@ export default function PatientsPage() {
     }
   }
 
-  const handleAddPatient = async (newPatient: Omit<Patient, "id">) => {
+  const handleAddPatient = async (newPatient) => {
     try {
       await api.post("/patients", newPatient)
       toast({
@@ -67,7 +56,7 @@ export default function PatientsPage() {
     }
   }
 
-  const handleUpdatePatient = async (updatedPatient: Patient) => {
+  const handleUpdatePatient = async (updatedPatient) => {
     try {
       await api.put(`/patients/${updatedPatient.id}`, updatedPatient)
       toast({
@@ -86,7 +75,7 @@ export default function PatientsPage() {
     }
   }
 
-  const handleDeletePatient = async (id: number) => {
+  const handleDeletePatient = async (id) => {
     if (window.confirm("Are you sure you want to delete this patient?")) {
       try {
         await api.delete(`/patients/${id}`)
@@ -170,4 +159,3 @@ export default function PatientsPage() {
     </div>
   )
 }
-
