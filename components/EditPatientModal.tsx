@@ -41,7 +41,7 @@ export function EditPatientModal({ patient, isOpen, onClose, onUpdate }: EditPat
     onUpdate(formData)
     toast({
       title: "Patient Updated",
-      description: `${formData.name}'s information has been successfully updated.`,
+      description: `${formData.name}s information has been successfully updated.`,
     })
     onClose()
   }
@@ -51,7 +51,7 @@ export function EditPatientModal({ patient, isOpen, onClose, onUpdate }: EditPat
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Edit Patient</DialogTitle>
-          <DialogDescription>Update patient's information</DialogDescription>
+          <DialogDescription>Update patients information</DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>

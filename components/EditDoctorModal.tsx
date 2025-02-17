@@ -50,7 +50,7 @@ export function EditDoctorModal({ doctor, isOpen, onClose, onUpdate }: EditDocto
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Edit Doctor</DialogTitle>
-          <DialogDescription>Update doctor's information</DialogDescription>
+          <DialogDescription>Update doctors information</DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>

@@ -19,7 +19,7 @@ interface AppointmentFormData {
   purpose?: string
 }
 
-export function AddAppointmentForm({ onSuccess }: { onSuccess: () => void }) {
+export function AddAppointmentForm() {
     const {toast} = useToast()
 
   const [formData, setFormData] = useState<AppointmentFormData>({
