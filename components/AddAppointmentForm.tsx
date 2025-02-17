@@ -56,7 +56,7 @@ export function AddAppointmentForm({ onSuccess }: { onSuccess: () => void }) {
         title: "Success",
         description: "Appointment scheduled successfully",
       })
-      onSuccess()
+      // onSuccess()
       setFormData({
         appointment_method: "",
         date: "",

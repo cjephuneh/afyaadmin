@@ -25,6 +25,7 @@ interface Appointment {
   room_id?: string
 }
 
+
 export default function AppointmentsPage() {
     const {toast} = useToast()
 
