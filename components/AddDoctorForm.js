@@ -8,70 +8,63 @@ import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
 import api from "@/utils/api"
 
-interface DoctorFormData {
-  first_name: string
-  last_name: string
-  email: string
-  password: string
-  phone_number: string
-  gender: string
-  specialization: string
-  about: string
-  role: string
-  affiliation: string | null
-  consultation_fee: number | null
-  medical_license_number: string | null
-  image_url: string
-}
-
-export function AddDoctorForm({ onSuccess }: { onSuccess: () => void }) {
+export function AddDoctorForm({ onSuccess }) {
   const { toast } = useToast()
 
-  const [formData, setFormData] = useState<DoctorFormData>({
+  const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
     email: "",
-    password: "12345678",
+    password: "Admin",
     phone_number: "",
     gender: "",
     specialization: "",
     about: "",
-    role: "Doctor", // Default to Doctor
+    role: "Doctor",
     affiliation: "",
-    consultation_fee: null,
+    consultation_fee: "",
     medical_license_number: "",
     image_url: "",
   })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e) => {
     const { name, value } = e.target
     setFormData((prevData) => ({
       ...prevData,
-      [name]: name === "consultation_fee" ? Number(value) : value,
+      [name]: name === "consultation_fee" ? (value === "" ? "" : Number(value)) : value,
     }))
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      await api.post("/doctors", formData)
+      await api.post(`https://budgetwithai.com/admin/doctors`, {
+        ...formData,
+        consultation_fee: formData.consultation_fee === "" ? null : formData.consultation_fee,
+        affiliation: formData.affiliation === "" ? null : formData.affiliation,
+        medical_license_number: formData.medical_license_number === "" ? null : formData.medical_license_number,
+        specialization: formData.specialization === "" ? null : formData.specialization,
+      })
+
       toast({
         title: "Success",
         description: "Doctor added successfully",
       })
+
       onSuccess()
+
       setFormData({
         first_name: "",
         last_name: "",
         email: "",
-        phone_number: "",
         password: "Admin",
+        phone_number: "",
         gender: "",
         specialization: "",
         about: "",
         role: "Doctor",
         affiliation: "",
-        consultation_fee: null,
+        consultation_fee: "",
         medical_license_number: "",
         image_url: "",
       })
@@ -83,7 +76,6 @@ export function AddDoctorForm({ onSuccess }: { onSuccess: () => void }) {
         variant: "destructive",
       })
       console.log("Payload:", formData)
-
     }
   }
 
@@ -112,13 +104,7 @@ export function AddDoctorForm({ onSuccess }: { onSuccess: () => void }) {
         </div>
         <div>
           <Label htmlFor="specialization">Specialization</Label>
-          <Input
-            id="specialization"
-            name="specialization"
-            value={formData.specialization}
-            onChange={handleChange}
-            required
-          />
+          <Input id="specialization" name="specialization" value={formData.specialization} onChange={handleChange} />
         </div>
         <div className="md:col-span-2">
           <Label htmlFor="about">About</Label>
@@ -134,7 +120,7 @@ export function AddDoctorForm({ onSuccess }: { onSuccess: () => void }) {
         </div>
         <div>
           <Label htmlFor="affiliation">Affiliation</Label>
-          <Input id="affiliation" name="affiliation" value={formData.affiliation || ""} onChange={handleChange} />
+          <Input id="affiliation" name="affiliation" value={formData.affiliation} onChange={handleChange} />
         </div>
         <div>
           <Label htmlFor="consultation_fee">Consultation Fee (Ksh)</Label>
@@ -142,7 +128,7 @@ export function AddDoctorForm({ onSuccess }: { onSuccess: () => void }) {
             id="consultation_fee"
             name="consultation_fee"
             type="number"
-            value={formData.consultation_fee || ""}
+            value={formData.consultation_fee}
             onChange={handleChange}
           />
         </div>
@@ -151,7 +137,7 @@ export function AddDoctorForm({ onSuccess }: { onSuccess: () => void }) {
           <Input
             id="medical_license_number"
             name="medical_license_number"
-            value={formData.medical_license_number || ""}
+            value={formData.medical_license_number}
             onChange={handleChange}
           />
         </div>
@@ -160,7 +146,9 @@ export function AddDoctorForm({ onSuccess }: { onSuccess: () => void }) {
           <Input id="image_url" name="image_url" value={formData.image_url} onChange={handleChange} />
         </div>
       </div>
-      <Button type="submit" className="w-full">Add Doctor</Button>
+      <Button type="submit" className="w-full">
+        Add Doctor
+      </Button>
     </form>
   )
 }
