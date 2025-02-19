@@ -27,15 +27,16 @@ function Home() {
 
   const fetchOverviewData = async () => {
     try {
-      const [doctorsCount, appointmentsCount, feedbackCount] = await Promise.all([
+      const [doctorsCount, appointmentsCount, feedbackCount, patientsCount] = await Promise.all([
         api.get("/doctors/count"),
         api.get("/appointments/count"),
         api.get("/feedback/count"),
+        api.get("/patients/count"),
       ])
 
       setOverviewData({
         totalDoctors: doctorsCount.data.total_doctors,
-        totalPatients: 0, // We don't have an endpoint for this, so leaving it as 0
+        totalPatients: patientsCount.data.total_patients, // We don't have an endpoint for this, so leaving it as 0
         totalAppointments: appointmentsCount.data.total_appointments,
         totalFeedbacks: feedbackCount.data.total_feedbacks,
       })

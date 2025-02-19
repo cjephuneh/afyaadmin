@@ -14,6 +14,7 @@ interface PatientFormData {
   phone_number: string
   gender: string
   national_id: string
+  password: string
   date_of_birth: string
 }
 
@@ -28,6 +29,7 @@ export function AddPatientForm({ onSuccess }: { onSuccess: () => void }) {
     gender: "",
     national_id: "",
     date_of_birth: "",
+    password: "Adminaa@123",
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,6 +57,7 @@ export function AddPatientForm({ onSuccess }: { onSuccess: () => void }) {
         gender: "",
         national_id: "",
         date_of_birth: "",
+        password: "Adminaa@123",
       })
     } catch (error) {
       console.error("Error adding patient:", error)
@@ -85,7 +88,7 @@ export function AddPatientForm({ onSuccess }: { onSuccess: () => void }) {
         <Input id="phone_number" name="phone_number" value={formData.phone_number} onChange={handleChange} required />
       </div>
       <div>
-        <Label htmlFor="gender">Gender</Label>
+        <Label htmlFor="gender">Gender(Male, Female)</Label>
         <Input id="gender" name="gender" value={formData.gender} onChange={handleChange} required />
       </div>
       <div>

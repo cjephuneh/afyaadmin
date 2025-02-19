@@ -99,7 +99,7 @@ export function AddDoctorForm({ onSuccess }) {
           <Input id="phone_number" name="phone_number" value={formData.phone_number} onChange={handleChange} required />
         </div>
         <div>
-          <Label htmlFor="gender">Gender</Label>
+          <Label htmlFor="gender">Gender(Male, Female)</Label>
           <Input id="gender" name="gender" value={formData.gender} onChange={handleChange} required />
         </div>
         <div>
