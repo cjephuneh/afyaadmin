@@ -40,7 +40,7 @@ export function ViewReportModal({ report, isOpen, onClose }: ViewReportModalProp
             <h3 className="font-semibold">Patient ID</h3>
             <p>{report.patient_id}</p>
           </div>
-          <div>\
+          <div>
             <h3 className="font-semibold">Created At</h3>
             <p>{new Date(report.created_at).toLocaleString()}</p>
           </div>

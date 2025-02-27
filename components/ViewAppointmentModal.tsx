@@ -3,8 +3,9 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 
 interface Appointment {
   id: number
-  doctorId: string
-  patientId: string
+  doctor_id: string
+  patient_id: string
+  purpose: string
   date: string
   time: string
   type: string
@@ -28,11 +29,15 @@ export function ViewAppointmentModal({ appointment, isOpen, onClose }: ViewAppoi
         <div className="grid gap-4 py-4">
           <div>
             <h3 className="font-semibold">Doctor</h3>
-            <p>{appointment.doctorId}</p>
+            <p>{appointment.doctor_id}</p>
           </div>
           <div>
             <h3 className="font-semibold">Patient</h3>
-            <p>{appointment.patientId}</p>
+            <p>{appointment.patient_id}</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Purpose</h3>
+            <p>{appointment.purpose}</p>
           </div>
           <div>
             <h3 className="font-semibold">Date</h3>
@@ -42,10 +47,7 @@ export function ViewAppointmentModal({ appointment, isOpen, onClose }: ViewAppoi
             <h3 className="font-semibold">Time</h3>
             <p>{appointment.time}</p>
           </div>
-          <div>
-            <h3 className="font-semibold">Type</h3>
-            <p>{appointment.type}</p>
-          </div>
+          
           <div>
             <h3 className="font-semibold">Status</h3>
             <p>{appointment.status}</p>

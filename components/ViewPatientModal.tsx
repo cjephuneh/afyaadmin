@@ -4,11 +4,14 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 interface Patient {
   id: number
   name: string
-  dob: string
+  date_of_birth: string
   email: string
-  phone: string
+  phone_number: string
   address: string
   medicalHistory: string
+  national_id: string
+  first_name: string
+  gender: string
 }
 
 interface ViewPatientModalProps {
@@ -27,8 +30,16 @@ export function ViewPatientModal({ patient, isOpen, onClose }: ViewPatientModalP
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div>
+            <h3 className="font-semibold">Name</h3>
+            <p>{patient.first_name}</p>
+          </div>
+          <div>
             <h3 className="font-semibold">Date of Birth</h3>
-            <p>{patient.dob}</p>
+            <p>{patient.date_of_birth}</p>
+          </div>
+          <div>
+            <h3 className="font-semibold">Date of Birth</h3>
+            <p>{patient.gender}</p>
           </div>
           <div>
             <h3 className="font-semibold">Email</h3>
@@ -36,16 +47,13 @@ export function ViewPatientModal({ patient, isOpen, onClose }: ViewPatientModalP
           </div>
           <div>
             <h3 className="font-semibold">Phone</h3>
-            <p>{patient.phone}</p>
+            <p>{patient.phone_number}</p>
           </div>
           <div>
-            <h3 className="font-semibold">Address</h3>
-            <p>{patient.address}</p>
+            <h3 className="font-semibold">National ID</h3>
+            <p>{patient.national_id}</p>
           </div>
-          <div>
-            <h3 className="font-semibold">Medical History</h3>
-            <p>{patient.medicalHistory}</p>
-          </div>
+         
         </div>
         <Button onClick={onClose}>Close</Button>
       </DialogContent>

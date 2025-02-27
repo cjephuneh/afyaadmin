@@ -121,6 +121,7 @@ export default function AppointmentsPage() {
             <TableHead>Patient ID</TableHead>
             <TableHead>Doctor ID</TableHead>
             <TableHead>Status</TableHead>
+            <TableHead>Meet</TableHead>
             <TableHead>Actions</TableHead>
           </TableRow>
         </TableHeader>
@@ -131,6 +132,7 @@ export default function AppointmentsPage() {
               <TableCell>{appointment.time}</TableCell>
               <TableCell>{appointment.patient_id}</TableCell>
               <TableCell>{appointment.doctor_id}</TableCell>
+              <TableCell>{appointment.meet_link}</TableCell>
               <TableCell>{appointment.status}</TableCell>
               <TableCell>
                 <Button
