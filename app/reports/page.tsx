@@ -6,7 +6,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { ViewReportModal } from "@/components/ViewReportModal"
 import api from "@/utils/api"
 import { useToast } from "@/hooks/use-toast"
-import { Search, Loader2, FileText, AlertTriangle } from "lucide-react"
+import { Search, Loader2, FileText, } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
