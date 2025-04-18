@@ -45,7 +45,7 @@ export default function ContactPage() {
   const fetchContactMessages = async () => {
     setIsLoading(true)
     try {
-      const response = await api.get("https://budgetwithai.com/api/v1.0/contact")
+      const response = await api.get("https://api.afyamkononi.co.ke/api/v1.0/contact")
       setAllMessages(response.data.messages)
       setMessages(response.data.messages)
     } catch (error) {

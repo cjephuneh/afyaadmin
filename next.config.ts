@@ -1,7 +1,15 @@
-import type { NextConfig } from "next";
+import { NextConfig } from 'next';
 
-const nextConfig: NextConfig = {
-  /* config options here */
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // Remove 'serverside' as it's not a valid Next.js config option
+  output: 'export',
+  
+  // Disable server-side features for static export
+  images: {
+    unoptimized: true
+  }
 };
 
-export default nextConfig;
+
+module.exports = nextConfig;

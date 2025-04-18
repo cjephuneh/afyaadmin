@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const api = axios.create({
-  baseURL: "https://budgetwithai.com/admin",
+  baseURL: "https://api.afyamkononi.co.ke/admin",
 })
 
 // Add a request interceptor to include the auth token
