@@ -38,7 +38,7 @@ export function AddDoctorForm({ onSuccess }) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      await api.post(`https://api.afyamkononi.co.ke/admin/doctors`, {
+      await api.post(`https://budgetwithai.com/admin/doctors`, {
         ...formData,
         consultation_fee: formData.consultation_fee === "" ? null : formData.consultation_fee,
         affiliation: formData.affiliation === "" ? null : formData.affiliation,

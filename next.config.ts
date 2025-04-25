@@ -1,9 +1,7 @@
-// next.config.js
-const nextConfig = {
-  // Remove 'output: export' if you want SSR for dynamic pages
-  images: {
-    unoptimized: true,
-  },
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  /* config options here */
 };
 
-module.exports = nextConfig;
+export default nextConfig;
