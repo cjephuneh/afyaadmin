@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Button } from "@/components/ui/button"
+// import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { LayoutDashboard, Stethoscope, Users, Calendar, FileText, Settings, MessageSquare, LogOut, Mail } from "lucide-react"
 import { useAuth } from "@/context/AuthContext"
