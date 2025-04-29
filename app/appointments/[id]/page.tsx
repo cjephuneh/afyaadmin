@@ -33,7 +33,12 @@ export async function generateStaticParams() {
   }
 }
 
-export default function AppointmentDetailsPage({ params }: { params: { id: string } }) {
+interface PageProps {
+  params: { id: string }
+  searchParams?: { [key: string]: string | string[] | undefined }
+}
+
+export default function AppointmentDetailsPage({ params }: PageProps) {
   return <AppointmentDetails id={params.id} />
 }
 
