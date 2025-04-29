@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Calendar, Clock, User, UserCheck, FileText, CheckCircle2 } from "lucide-react"
 
 interface Appointment {

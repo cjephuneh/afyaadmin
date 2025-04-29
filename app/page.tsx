@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Stethoscope, Users, Calendar, MessageSquare,  ArrowUpRight, ArrowDownRight } from "lucide-react"
+import { Stethoscope, Users, Calendar, MessageSquare, TrendingUp, ArrowUpRight, ArrowDownRight } from "lucide-react"
 import { ProtectedRoute } from "@/components/ProtectedRoute"
 import api from "@/utils/api"
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts'

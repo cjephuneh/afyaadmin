@@ -10,7 +10,7 @@ import api from "@/utils/api"
 import { useToast } from "@/hooks/use-toast"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { UserPlus, Lock, Bell, Sun, Users, Shield } from "lucide-react"
+import { UserPlus, Lock, Bell, Moon, Sun, Users, Shield } from "lucide-react"
 
 interface Admin {
   id: number
