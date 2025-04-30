@@ -179,6 +179,7 @@ export default function DoctorsPage() {
                     <TableHead className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Email</TableHead>
                     <TableHead className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Phone</TableHead>
                     <TableHead className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Specialization</TableHead>
+                    <TableHead className="px-6 py-3 text-left text-sm font-semibold text-gray-700">LicenseNumber</TableHead>
                     <TableHead className="px-6 py-3 text-right text-sm font-semibold text-gray-700">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -197,6 +198,7 @@ export default function DoctorsPage() {
                           <span className="text-gray-400">N/A</span>
                         )}
                       </TableCell>
+                      <TableCell className="px-6 py-4 text-sm text-gray-600">{doctor.medical_license_number}</TableCell>
                       <TableCell className="px-6 py-4 text-sm text-right space-x-2">
                         <Button 
                           variant="outline" 

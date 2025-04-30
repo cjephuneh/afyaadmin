@@ -75,7 +75,7 @@ export function ViewDoctorModal({ doctor, isOpen, onClose }: ViewDoctorModalProp
               <Phone className="h-5 w-5 text-gray-500 mr-3" />
               <div>
                 <p className="text-sm text-gray-500">Phone</p>
-                <p className="font-medium text-gray-900">{doctor.phone}</p>
+                <p className="font-medium text-gray-900">{doctor.phone_number}</p>
               </div>
             </div>
             
