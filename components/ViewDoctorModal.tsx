@@ -10,22 +10,24 @@ interface Doctor {
   last_name?: string
   specialization: string
   email: string
-  phone: string
+  phone_number: string
   qualifications?: string
   about?: string
   affiliation?: string
   medical_license_number?: string
   consultation_fee?: number
   image_url?: string
+  is_verified?: boolean
 }
 
 interface ViewDoctorModalProps {
   doctor: Doctor
   isOpen: boolean
   onClose: () => void
+  onVerify?: (doctorId: number) => void
 }
 
-export function ViewDoctorModal({ doctor, isOpen, onClose }: ViewDoctorModalProps) {
+export function ViewDoctorModal({ doctor, isOpen, onClose, onVerify }: ViewDoctorModalProps) {
   const fullName = doctor.name || `Dr. ${doctor.first_name || ''} ${doctor.last_name || ''}`;
   
   // Get initials for avatar fallback
@@ -120,12 +122,22 @@ export function ViewDoctorModal({ doctor, isOpen, onClose }: ViewDoctorModalProp
             )}
           </div>
           
-          <Button 
-            onClick={onClose} 
-            className="w-full mt-4 py-2 h-11 rounded-lg bg-gradient-to-r from-blue-700 to-teal-600 text-white hover:from-blue-800 hover:to-teal-700 transition-all duration-200"
-          >
-            Close
-          </Button>
+          <div className="flex gap-3 mt-4">
+            {!doctor.is_verified && onVerify && (
+              <Button 
+                onClick={() => onVerify(doctor.id)} 
+                className="flex-1 py-2 h-11 rounded-lg bg-green-600 text-white hover:bg-green-700 transition-all duration-200"
+              >
+                Verify Doctor
+              </Button>
+            )}
+            <Button 
+              onClick={onClose} 
+              className="flex-1 py-2 h-11 rounded-lg bg-gradient-to-r from-blue-700 to-teal-600 text-white hover:from-blue-800 hover:to-teal-700 transition-all duration-200"
+            >
+              Close
+            </Button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
