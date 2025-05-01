@@ -1,15 +1,9 @@
-import { NextConfig } from 'next';
-
-/** @type {import('next').NextConfig} */
+// next.config.js
 const nextConfig = {
-  // Remove 'serverside' as it's not a valid Next.js config option
-  output: 'export',
-  
-  // Disable server-side features for static export
+  // Remove 'output: export' if you want SSR for dynamic pages
   images: {
-    unoptimized: true
-  }
+    unoptimized: true,
+  },
 };
-
 
 module.exports = nextConfig;
