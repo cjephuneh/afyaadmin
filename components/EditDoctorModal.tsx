@@ -9,10 +9,10 @@ import { User, Mail, Phone, Award, BookOpen } from "lucide-react"
 
 interface Doctor {
   id: number
-  name: string
+  first_name: string
   specialization: string
   email: string
-  phone: string
+  phone_number: string
   qualifications: string
 }
 
@@ -40,7 +40,7 @@ export function EditDoctorModal({ doctor, isOpen, onClose, onUpdate }: EditDocto
     onUpdate(formData)
     toast({
       title: "Doctor Updated",
-      description: `${formData.name}'s information has been successfully updated.`,
+      description: `${formData.first_name}'s information has been successfully updated.`,
     })
     onClose()
   }
@@ -62,7 +62,7 @@ export function EditDoctorModal({ doctor, isOpen, onClose, onUpdate }: EditDocto
             <Input 
               id="name" 
               name="name" 
-              value={formData.name} 
+              value={formData.first_name} 
               onChange={handleChange} 
               required 
               className="h-12 rounded-lg border-gray-300 bg-white px-4 text-base shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors"
@@ -108,7 +108,7 @@ export function EditDoctorModal({ doctor, isOpen, onClose, onUpdate }: EditDocto
             <Input 
               id="phone" 
               name="phone" 
-              value={formData.phone} 
+              value={formData.phone_number} 
               onChange={handleChange} 
               required 
               className="h-12 rounded-lg border-gray-300 bg-white px-4 text-base shadow-sm focus:ring-blue-500 focus:border-blue-500 transition-colors"

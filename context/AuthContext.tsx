@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     try {
       console.log("Attempting login with:", email, password);
 
-      const response = await fetch("https://api.afyamkononi.co.ke/admin/signin", {
+      const response = await fetch("https://api.afyamkononi.co.ke./admin/signin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
