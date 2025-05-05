@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { PlusCircle, Search, Loader2 } from "lucide-react"
+import { PlusCircle, Search, Loader2, CheckCircle, XCircle } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { AddDoctorForm } from "@/components/AddDoctorForm"
 import { ViewDoctorModal } from "@/components/ViewDoctorModal"
@@ -40,6 +40,26 @@ export default function DoctorsPage() {
       })
     } finally {
       setIsLoading(false)
+    }
+  }
+
+  // Add verification handler
+  const handleVerifyDoctor = async (doctorId) => {
+    try {
+      await api.get(`/doctors/verify/${doctorId}`)
+      toast({
+        title: "Success",
+        description: "Doctor verified successfully",
+      })
+      fetchDoctors()
+      setViewDoctor(null)
+    } catch (error) {
+      console.error("Error verifying doctor:", error)
+      toast({
+        title: "Error",
+        description: "Failed to verify doctor",
+        variant: "destructive",
+      })
     }
   }
 
@@ -179,7 +199,8 @@ export default function DoctorsPage() {
                     <TableHead className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Email</TableHead>
                     <TableHead className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Phone</TableHead>
                     <TableHead className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Specialization</TableHead>
-                    <TableHead className="px-6 py-3 text-left text-sm font-semibold text-gray-700">LicenseNumber</TableHead>
+                    <TableHead className="px-6 py-3 text-left text-sm font-semibold text-gray-700">License Number</TableHead>
+                    <TableHead className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Status</TableHead>
                     <TableHead className="px-6 py-3 text-right text-sm font-semibold text-gray-700">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -199,6 +220,19 @@ export default function DoctorsPage() {
                         )}
                       </TableCell>
                       <TableCell className="px-6 py-4 text-sm text-gray-600">{doctor.medical_license_number}</TableCell>
+                      <TableCell className="px-6 py-4 text-sm text-gray-600">
+                        {doctor.verified ? (
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            <CheckCircle className="h-3 w-3 mr-1" />
+                            Verified
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                            <XCircle className="h-3 w-3 mr-1" />
+                            Not Verified
+                          </span>
+                        )}
+                      </TableCell>
                       <TableCell className="px-6 py-4 text-sm text-right space-x-2">
                         <Button 
                           variant="outline" 
@@ -216,6 +250,16 @@ export default function DoctorsPage() {
                         >
                           Edit
                         </Button>
+                        {!doctor.is_verified && (
+                          <Button 
+                            variant="outline" 
+                            size="sm" 
+                            className="border-gray-200 text-gray-700 hover:bg-green-50 hover:text-green-600" 
+                            onClick={() => handleVerifyDoctor(doctor.id)}
+                          >
+                            Verify
+                          </Button>
+                        )}
                         <Button 
                           variant="outline" 
                           size="sm" 
@@ -243,7 +287,14 @@ export default function DoctorsPage() {
         )}
       </div>
       
-      {viewDoctor && <ViewDoctorModal doctor={viewDoctor} isOpen={!!viewDoctor} onClose={() => setViewDoctor(null)} />}
+      {viewDoctor && 
+        <ViewDoctorModal 
+          doctor={viewDoctor} 
+          isOpen={!!viewDoctor} 
+          onClose={() => setViewDoctor(null)} 
+          onVerify={handleVerifyDoctor}
+        />
+      }
       {editDoctor && (
         <EditDoctorModal
           doctor={editDoctor}

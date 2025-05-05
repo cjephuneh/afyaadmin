@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent } from "@/components/ui/dialog"
-import { Mail, Phone, Award, BookOpen, CreditCard, User } from "lucide-react"
+import { Mail, Phone, Award, BookOpen, CreditCard, User, CheckCircle, XCircle } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 interface Doctor {
@@ -24,7 +24,7 @@ interface ViewDoctorModalProps {
   doctor: Doctor
   isOpen: boolean
   onClose: () => void
-  onVerify?: (doctorId: number) => void
+  onVerify?: (doctorId: number) => Promise<void>
 }
 
 export function ViewDoctorModal({ doctor, isOpen, onClose, onVerify }: ViewDoctorModalProps) {
@@ -52,6 +52,19 @@ export function ViewDoctorModal({ doctor, isOpen, onClose, onVerify }: ViewDocto
             <div className="text-white">
               <h2 className="text-2xl font-bold">{fullName}</h2>
               <p className="opacity-90">{doctor.specialization || 'Specialization not specified'}</p>
+              <div className="flex items-center mt-2">
+                {doctor.is_verified ? (
+                  <div className="flex items-center bg-green-500/20 px-2 py-1 rounded text-white text-sm">
+                    <CheckCircle className="h-4 w-4 mr-1" />
+                    <span>Verified</span>
+                  </div>
+                ) : (
+                  <div className="flex items-center bg-red-500/20 px-2 py-1 rounded text-white text-sm">
+                    <XCircle className="h-4 w-4 mr-1" />
+                    <span>Not Verified</span>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
