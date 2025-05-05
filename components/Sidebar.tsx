@@ -8,14 +8,14 @@ import { LayoutDashboard, Stethoscope, Users, Calendar, FileText, Settings, Mess
 import { useAuth } from "@/context/AuthContext"
 
 const sidebarItems = [
-  { icon: LayoutDashboard, label: "Dashboard", href: "/" },
-  { icon: Stethoscope, label: "Doctors", href: "/doctors" },
-  { icon: Users, label: "Patients", href: "/patients" },
-  { icon: Calendar, label: "Appointments", href: "/appointments" },
-  { icon: FileText, label: "Appointment Reports", href: "/reports" },
-  { icon: MessageSquare, label: "Feedback", href: "/feedback" },
-  { icon: Mail, label: "Contact Messages", href: "/contact" },
-  { icon: Settings, label: "Settings", href: "/settings" },
+  { icon: LayoutDashboard, label: "Dashboard", href: { pathname: "/" } },
+  { icon: Stethoscope, label: "Doctors", href: { pathname: "/doctors" } },
+  { icon: Users, label: "Patients", href: { pathname: "/patients" } },
+  { icon: Calendar, label: "Appointments", href: { pathname: "/appointments" } },
+  { icon: FileText, label: "Appointment Reports", href: { pathname: "/reports" } },
+  { icon: MessageSquare, label: "Feedback", href: { pathname: "/feedback" } },
+  { icon: Mail, label: "Contact Messages", href: { pathname: "/contact" } },
+  { icon: Settings, label: "Settings", href: { pathname: "/settings" } },
 ]
 
 export function Sidebar() {
@@ -46,13 +46,13 @@ export function Sidebar() {
                 <Link key={index} href={item.href}>
                   <div
                     className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
-                      pathname === item.href
+                      pathname === item.href.pathname
                         ? "bg-gradient-to-r from-green-100 to-blue-100 text-blue-700 dark:from-green-900/40 dark:to-blue-900/40 dark:text-blue-300 shadow-sm"
                         : "text-gray-700 hover:bg-gray-100/80 dark:text-gray-300 dark:hover:bg-gray-800/50 hover:translate-x-1"
                     }`}
                   >
                     <item.icon className={`h-5 w-5 ${
-                      pathname === item.href 
+                      pathname === item.href.pathname 
                         ? "text-green-600 dark:text-green-400" 
                         : "text-gray-500 dark:text-gray-400"
                     }`} />

@@ -1,14 +1,7 @@
-import type React from "react"
 import Link from "next/link"
 
-interface SidebarItemProps {
-  icon: React.ReactElement
-  title: string
-  href: string
-  onClick?: () => void
-}
 
-export const SidebarItem: React.FC<SidebarItemProps> = ({ icon, title, href, onClick }) => {
+export const SidebarItem = ({ href, icon, title, onClick }) => {
   return (
     <li className="mb-2">
       <Link
