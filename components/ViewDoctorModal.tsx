@@ -17,7 +17,7 @@ interface Doctor {
   medical_license_number?: string
   consultation_fee?: number
   image_url?: string
-  is_verified?: boolean
+  verified?: boolean
 }
 
 interface ViewDoctorModalProps {
@@ -53,7 +53,7 @@ export function ViewDoctorModal({ doctor, isOpen, onClose, onVerify }: ViewDocto
               <h2 className="text-2xl font-bold">{fullName}</h2>
               <p className="opacity-90">{doctor.specialization || 'Specialization not specified'}</p>
               <div className="flex items-center mt-2">
-                {doctor.is_verified ? (
+                {doctor.verified || doctor.verified ? (
                   <div className="flex items-center bg-green-500/20 px-2 py-1 rounded text-white text-sm">
                     <CheckCircle className="h-4 w-4 mr-1" />
                     <span>Verified</span>
@@ -136,7 +136,7 @@ export function ViewDoctorModal({ doctor, isOpen, onClose, onVerify }: ViewDocto
           </div>
           
           <div className="flex gap-3 mt-4">
-            {!doctor.is_verified && onVerify && (
+            {!doctor.verified && !doctor.verified && onVerify && (
               <Button 
                 onClick={() => onVerify(doctor.id)} 
                 className="flex-1 py-2 h-11 rounded-lg bg-green-600 text-white hover:bg-green-700 transition-all duration-200"

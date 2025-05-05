@@ -221,7 +221,7 @@ export default function DoctorsPage() {
                       </TableCell>
                       <TableCell className="px-6 py-4 text-sm text-gray-600">{doctor.medical_license_number}</TableCell>
                       <TableCell className="px-6 py-4 text-sm text-gray-600">
-                        {doctor.verified ? (
+                        {doctor.verified || doctor.verified ? (
                           <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
                             <CheckCircle className="h-3 w-3 mr-1" />
                             Verified
@@ -233,41 +233,43 @@ export default function DoctorsPage() {
                           </span>
                         )}
                       </TableCell>
-                      <TableCell className="px-6 py-4 text-sm text-right space-x-2">
-                        <Button 
-                          variant="outline" 
-                          size="sm" 
-                          className="border-gray-200 text-gray-700 hover:bg-gray-50 hover:text-blue-600" 
-                          onClick={() => setViewDoctor(doctor)}
-                        >
-                          View
-                        </Button>
-                        <Button 
-                          variant="outline" 
-                          size="sm" 
-                          className="border-gray-200 text-gray-700 hover:bg-gray-50 hover:text-indigo-600" 
-                          onClick={() => setEditDoctor(doctor)}
-                        >
-                          Edit
-                        </Button>
-                        {!doctor.is_verified && (
+                      <TableCell className="px-6 py-4 text-sm text-right">
+                        <div className="flex flex-wrap justify-end gap-2">
                           <Button 
                             variant="outline" 
                             size="sm" 
-                            className="border-gray-200 text-gray-700 hover:bg-green-50 hover:text-green-600" 
-                            onClick={() => handleVerifyDoctor(doctor.id)}
+                            className="min-w-[70px] border-gray-200 text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors"
+                            onClick={() => setViewDoctor(doctor)}
                           >
-                            Verify
+                            View
                           </Button>
-                        )}
-                        <Button 
-                          variant="outline" 
-                          size="sm" 
-                          className="border-gray-200 text-gray-700 hover:bg-gray-50 hover:text-red-600" 
-                          onClick={() => handleDeleteDoctor(doctor.id)}
-                        >
-                          Delete
-                        </Button>
+                          <Button 
+                            variant="outline" 
+                            size="sm" 
+                            className="min-w-[70px] border-gray-200 text-gray-700 hover:bg-gray-50 hover:text-indigo-600 transition-colors"
+                            onClick={() => setEditDoctor(doctor)}
+                          >
+                            Edit
+                          </Button>
+                          {!doctor.verified && !doctor.verified && (
+                            <Button 
+                              variant="outline" 
+                              size="sm" 
+                              className="min-w-[70px] border-gray-200 text-gray-700 hover:bg-green-50 hover:text-green-600 transition-colors"
+                              onClick={() => handleVerifyDoctor(doctor.id)}
+                            >
+                              Verify
+                            </Button>
+                          )}
+                          <Button 
+                            variant="outline" 
+                            size="sm" 
+                            className="min-w-[70px] border-gray-200 text-gray-700 hover:bg-gray-50 hover:text-red-600 transition-colors"
+                            onClick={() => handleDeleteDoctor(doctor.id)}
+                          >
+                            Delete
+                          </Button>
+                        </div>
                       </TableCell>
                     </TableRow>
                   ))}
@@ -279,8 +281,8 @@ export default function DoctorsPage() {
                 Showing <span className="font-medium">{filteredDoctors.length}</span> of <span className="font-medium">{doctors.length}</span> doctors
               </div>
               <div className="flex space-x-2">
-                <Button variant="outline" size="sm" className="border-gray-200" disabled>Previous</Button>
-                <Button variant="outline" size="sm" className="border-gray-200" disabled>Next</Button>
+                <Button variant="outline" size="sm" className="min-w-[80px] border-gray-200" disabled>Previous</Button>
+                <Button variant="outline" size="sm" className="min-w-[80px] border-gray-200" disabled>Next</Button>
               </div>
             </div>
           </>
