@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Calendar, Clock, User, UserCheck, FileText, CheckCircle2 } from "lucide-react"
 
 interface Appointment {
@@ -44,6 +44,9 @@ export function ViewAppointmentModal({ appointment, isOpen, onClose }: ViewAppoi
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-md rounded-xl border-none shadow-xl bg-white p-0 overflow-hidden">
+        <DialogHeader>
+          <DialogTitle></DialogTitle>
+        </DialogHeader>
         <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-6 text-white">
           <h2 className="text-2xl font-bold mb-2">Appointment #{appointment.id}</h2>
           <p className="opacity-90 text-sm">View complete appointment details</p>

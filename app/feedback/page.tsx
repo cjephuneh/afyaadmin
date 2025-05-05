@@ -44,7 +44,7 @@ export default function FeedbackPage() {
 
   // Function to render star ratings
   const renderRating = (rating: number) => {
-    const stars = [];
+    const stars: React.ReactNode[] = [];
     for (let i = 1; i <= 5; i++) {
       if (i <= rating) {
         stars.push(<StarFilledIcon key={i} className="h-4 w-4 text-yellow-400 inline-block" />);
