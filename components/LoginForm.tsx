@@ -10,8 +10,8 @@ import { useToast } from "@/hooks/use-toast";
 import { EyeIcon, EyeOffIcon, LockIcon, MailIcon } from "lucide-react";
 
 export function LoginForm() {
-  const [email, setEmail] = useState("mburuelvis19@gmail.com");
-  const [password, setPassword] = useState("Admin");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
